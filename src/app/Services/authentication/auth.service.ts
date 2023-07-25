@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import{HttpClient} from'@angular/common/http';
+import{HttpClient, HttpHeaders} from'@angular/common/http';
 import { User } from 'src/app/Entities/user';
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,12 @@ import { User } from 'src/app/Entities/user';
 export class AuthService {
 
   constructor(private httpClient:HttpClient) { }
+  // sessionId:any=localStorage.getItem('sessionId');
+  // httpOptions = {headers: new HttpHeaders({
+  //   'Content-Type':  'application/json',
+  //   'Authorization': `Bearer ${this.sessionId}` })};
 
+    
   login(data:User){
     return this.httpClient.post('http://localhost:8089/authentication/login',data);
 

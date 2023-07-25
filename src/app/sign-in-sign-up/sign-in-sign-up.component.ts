@@ -1,6 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { User } from '../Entities/user';
 import { AuthService } from '../Services/authentication/auth.service';
+import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in-sign-up',
@@ -10,7 +13,30 @@ import { AuthService } from '../Services/authentication/auth.service';
 export class SignInSignUpComponent {
   user=new User;
   registerForm: any;
-  constructor(private authService:AuthService){}
+  constructor(private http:HttpClient,private authService:AuthService,private router: Router){}
+  message:any;
+
+  onSubmit(form:NgForm){
+
+    const username = form.value.username;
+    const password = form.value.password;
+    this.http.post('http://localhost:8089/authentication/login',{
+        username: username,
+        password:password,
+       
+    }).subscribe((res:any)=>{
+     console.log(res);
+     localStorage.setItem('sessionId',res.message);
+     this.router.navigate(['/list-page']);
+    }, 
+    err=>{
+        console.log(err);
+       this.message="Mots de pass ou login Incorrecte";
+    });
+}
+
+
+
 
   signupUser(){
     // console.log(this.user);
