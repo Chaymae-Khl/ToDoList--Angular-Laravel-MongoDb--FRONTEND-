@@ -25,17 +25,16 @@ export class SignInSignUpComponent {
         password:password,
        
     }).subscribe((res:any)=>{
-     console.log(res);
-     localStorage.setItem('sessionId',res.message);
+    //  console.log(res);
+     localStorage.setItem('sessionId',res.sessionId);
      this.router.navigate(['/list-page']);
     }, 
     err=>{
         console.log(err);
        this.message="Mots de pass ou login Incorrecte";
     });
+   
 }
-
-
 
 
   signupUser(){

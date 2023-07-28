@@ -23,6 +23,11 @@ html,body{
 , #0073e6);
 
 }
+
+.message{
+  color: red;
+  text-align: center;
+}
 ::selection{
   background: #1a75ff;
   color: #fff;
