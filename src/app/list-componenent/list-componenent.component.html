@@ -38,15 +38,24 @@
             <div class="tab-content" id="ex1-content">
               <div *ngFor="let list of lists" class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
                 aria-labelledby="ex1-tab-1">
-                <ul class="list-group mb-0">
-                
-                  <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                  style="background-color: #f4f6f7;">
-                  <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."  />
-                  {{ list.title }}
-                </li>
-                  
-                </ul>
+                <form (ngSubmit)="saveList(list)" #listForm="ngForm" method="post">
+                  <ul class="list-group mb-0">
+                    <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+                      style="background-color: #f4f6f7;">
+                      <ng-container *ngIf="!list.editing; else editTemplate">
+                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
+                        <span (click)="startEditing(list)">{{ list.title }}</span>
+                        <button class="btn ms-auto" (click)="deleteList(list.id)"><span>&#10005;</span></button>
+                      </ng-container>
+                      <ng-template #editTemplate>
+                        <input class="form-control me-2" type="text" [(ngModel)]="list.title" name="title"
+                          (keyup.enter)="saveList(list.id)" (blur)="cancelEditing(list)" />
+                        <button class="btn ms-auto" type="submit">Save</button>
+                        <button class="btn" (click)="cancelEditing(list)">Cancel</button>
+                      </ng-template>
+                    </li>
+                  </ul>
+                </form>
               </div>
             </div>
             <!-- Tabs content -->

@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { List } from 'src/app/Entities/list';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListDataService {
+  http: any;
 
   private getHttpOptions() {
     const sessionId = localStorage.getItem('sessionId');
@@ -28,4 +30,11 @@ export class ListDataService {
   addData(data:List){
     return this.httpClient.post('http://localhost:8089/Api/save',data,this.httpOptions);
   }
+  deleteData(id:any){
+    return this.httpClient.delete('http://localhost:8089/Api/delete/'+id,this.httpOptions);
+  }
+  UpdateData(id:any,data:List){
+    return this.httpClient.put('http://localhost:8089/Api/edit/'+id,data,this.httpOptions);
+  }
+ 
 }
