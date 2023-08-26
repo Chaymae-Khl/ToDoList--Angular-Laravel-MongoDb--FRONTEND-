@@ -3,7 +3,7 @@ import { ListDataService } from '../Services/ListData/list-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { List } from '../Entities/list';
-
+import {OnInit, ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-list-componenent',
   templateUrl: './list-componenent.component.html',
@@ -11,9 +11,9 @@ import { List } from '../Entities/list';
 })
 export class ListComponenentComponent {
 
-  constructor(private listDataService:ListDataService,private http:HttpClient,private router: Router){}
-  // lists:any;
-  lists: List[] = []; // Assuming your data comes in an array
+  constructor(private listDataService:ListDataService,private http:HttpClient,private router: Router, private cdRef: ChangeDetectorRef){}
+  
+  lists: any = []; // Assuming your data comes in an array
   title: any;
   titleup:any;
   id:any;
@@ -40,7 +40,13 @@ export class ListComponenentComponent {
     };
     this.listDataService.addData(title).subscribe( (response: any)=> {
       // Refresh the list after successfully saving the data
+      this.lists = [];
+
+      // Fetch the updated list from the server
       this.getUserlist();
+  
+      // Trigger change detection
+      this.cdRef.detectChanges();
     });
  
   }
@@ -58,31 +64,25 @@ export class ListComponenentComponent {
       }
     );
   }
-
-  startEditing(list:any){
-    list.editing = true;
+  selectedList: any = null; // Initialize as null when no item is selected for editing
+  editList(list: any) {
+    this.selectedList = list; // Select the list item for editing
   }
 
+
   
-  saveList(list:any){
-    this.listDataService.UpdateData(list.id, list).subscribe(
-      (updatedList: any) => {
-        // Update the list in your local array
-        const index = this.lists.findIndex(item => item.id === updatedList.id);
-        if (index !== -1) {
-          this.lists[index] = updatedList;
-          this.cancelEditing(updatedList); // Exit editing mode
-        }
-      },
-      (error) => {
-        console.error('Error updating list:', error);
-      }
-    );
+  updateList(list: any) {
+    if (list.id) {
+      // Update existing list
+      this.listDataService.UpdateData(list.id,list)
+        .subscribe((response) => {
+          // Update the local list with the updated data from the response if needed
+          this.selectedList = null; // Clear the selected item after updating
+        });
+    }
   }
-  
 
-
-  cancelEditing(list:any){
-    list.editing = false;
+  cancelEdit() {
+    this.selectedList = null; // Cancel editing, clear selected item
   }
 }

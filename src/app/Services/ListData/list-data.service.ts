@@ -34,7 +34,8 @@ export class ListDataService {
     return this.httpClient.delete('http://localhost:8089/Api/delete/'+id,this.httpOptions);
   }
   UpdateData(id:any,data:List){
-    return this.httpClient.put('http://localhost:8089/Api/edit/'+id,data,this.httpOptions);
+    // console.log(id);
+    return this.httpClient.put('http://localhost:8089/Api/update/'+id,data,this.httpOptions);
   }
  
 }
