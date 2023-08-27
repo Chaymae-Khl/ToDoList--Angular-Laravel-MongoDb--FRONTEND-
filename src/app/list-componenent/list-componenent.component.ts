@@ -16,7 +16,7 @@ export class ListComponenentComponent {
   lists: any = []; // Assuming your data comes in an array
   title: any;
   titleup:any;
-  id:any;
+  id=22;
   ngOnInit(): void{
     this.getUserlist();
   }

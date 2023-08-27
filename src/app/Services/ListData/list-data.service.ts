@@ -28,13 +28,13 @@ export class ListDataService {
   }
 
   addData(data:List){
+    console.log(data);
     return this.httpClient.post('http://localhost:8089/Api/save',data,this.httpOptions);
   }
   deleteData(id:any){
     return this.httpClient.delete('http://localhost:8089/Api/delete/'+id,this.httpOptions);
   }
   UpdateData(id:any,data:List){
-    // console.log(id);
     return this.httpClient.post('http://localhost:8089/Api/update/'+id,data,this.httpOptions);
   }
  

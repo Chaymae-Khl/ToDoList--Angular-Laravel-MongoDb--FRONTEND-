@@ -25,7 +25,6 @@ export class SignInSignUpComponent {
         password:password,
        
     }).subscribe((res:any)=>{
-    //  console.log(res);
      localStorage.setItem('sessionId',res.sessionId);
      this.router.navigate(['/list-page']);
     }, 
@@ -38,7 +37,6 @@ export class SignInSignUpComponent {
 
 
   signupUser(){
-    // console.log(this.user);
     this.authService.signUp(this.user).subscribe(res =>{
         console.log("success");
          this.onLoginClick();

@@ -36,24 +36,24 @@
 
             <!-- Tabs content -->
             <div class="tab-content" id="ex1-content">
-              
-                <ul class="list-group mb-0">
-                  <li *ngFor="let list of lists" class="list-group-item d-flex align-items-center border-0 mb-2 rounded">
-                    <ng-container *ngIf="selectedList !== list; else editRow">
-                      <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                      <span (click)="editList(list)">{{ list.title }}</span>
-                     <!-- generale -->
-                      <button class="btn ms-2" (click)="deleteList(list.id)"><span>&#10005;</span></button>
-                    </ng-container>
-                    <ng-template #editRow>
-                      <input [(ngModel)]="list.title" (blur)="updateList(list)" class="form-control me-2" />
-                      <button class="btn ms-2" (click)="updateList(list.id)"><span>&#10003;</span></button>
-                      <button class="btn" (click)="cancelEdit()"><span>&#10005;</span></button>
-                     
-                    </ng-template>
-                  </li>
-                </ul>
-              
+
+              <ul class="list-group mb-0">
+                <li *ngFor="let list of lists" class="list-group-item d-flex align-items-center border-0 mb-2 rounded">
+                  <ng-container *ngIf="selectedList !== list; else editRow">
+                    <input class="form-check-input me-2" type="checkbox" name="title" value="" aria-label="..." />
+                    <span (click)="editList(list)">{{ list.title }}</span>
+                   <!-- generale -->
+                    <button class="btn ms-2" (click)="deleteList(list.id)"><span>&#10005;</span></button>
+                  </ng-container>
+                  <ng-template #editRow>
+                    <input [(ngModel)]="list.title" (blur)="updateList(list)" name="title" class="form-control me-2" />
+                    <button class="btn ms-2" (click)="updateList(list.id)"><span>&#10003;</span></button>
+                    <button class="btn" (click)="cancelEdit()"><span>&#10005;</span></button>
+
+                  </ng-template>
+                </li>
+              </ul>
+
             </div>
             <!-- Tabs content -->
 
