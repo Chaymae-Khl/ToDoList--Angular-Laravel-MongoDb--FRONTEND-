@@ -35,7 +35,7 @@ export class ListDataService {
   }
   UpdateData(id:any,data:List){
     // console.log(id);
-    return this.httpClient.put('http://localhost:8089/Api/update/'+id,data,this.httpOptions);
+    return this.httpClient.post('http://localhost:8089/Api/update/'+id,data,this.httpOptions);
   }
  
 }

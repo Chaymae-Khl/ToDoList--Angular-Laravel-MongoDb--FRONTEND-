@@ -64,6 +64,7 @@ export class ListComponenentComponent {
       }
     );
   }
+  
   selectedList: any = null; // Initialize as null when no item is selected for editing
   editList(list: any) {
     this.selectedList = list; // Select the list item for editing
@@ -74,6 +75,7 @@ export class ListComponenentComponent {
   updateList(list: any) {
     if (list.id) {
       // Update existing list
+      console.log(list);
       this.listDataService.UpdateData(list.id,list)
         .subscribe((response) => {
           // Update the local list with the updated data from the response if needed
