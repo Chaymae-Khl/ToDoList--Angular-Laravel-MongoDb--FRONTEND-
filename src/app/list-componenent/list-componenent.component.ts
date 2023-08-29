@@ -16,9 +16,10 @@ export class ListComponenentComponent {
   lists: any = []; // Assuming your data comes in an array
   title: any;
   titleup:any;
-  id=22;
+  user:any;
   ngOnInit(): void{
     this.getUserlist();
+    this.getAuthUser();
   }
   getUserlist(){
     // console.log('liste');
@@ -27,21 +28,30 @@ export class ListComponenentComponent {
       this.lists= res;
     })
   }
+  
   logout() {
    
     localStorage.removeItem('sessionId');
     this.router.navigate(['/signIn-signUp']);
 
   }
+
+  getAuthUser(){
+    // console.log('liste');
+    this.listDataService.authUser().subscribe((res:any) =>{
+      console.log(res);
+      this.user= res;
+    })
+
+  }
   addList(){
     const title = {
-      id:this.id,
       title: this.title
     };
     this.listDataService.addData(title).subscribe( (response: any)=> {
       // Refresh the list after successfully saving the data
       this.lists = [];
-
+      this.title="";
       // Fetch the updated list from the server
       this.getUserlist();
   
@@ -84,7 +94,5 @@ export class ListComponenentComponent {
     }
   }
 
-  cancelEdit() {
-    this.selectedList = null; // Cancel editing, clear selected item
-  }
+  
 }

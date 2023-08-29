@@ -15,4 +15,5 @@ export class AuthService {
   signUp(data:User){
     return this.httpClient.post('http://localhost:8089/authentication/signup',data);
   }
+
 }

@@ -22,12 +22,16 @@ export class ListDataService {
 
   constructor(private httpClient:HttpClient) { }
   httpOptions = this.getHttpOptions();
- 
+
+
+  authUser(){
+    return this.httpClient.get('http://localhost:8089/authentication/authenticatedUser',this.httpOptions);
+  }
   getData(){
     return this.httpClient.get('http://localhost:8089/Api/userLists',this.httpOptions);
   }
 
-  addData(data:List){
+  addData(data:any){
     console.log(data);
     return this.httpClient.post('http://localhost:8089/Api/save',data,this.httpOptions);
   }

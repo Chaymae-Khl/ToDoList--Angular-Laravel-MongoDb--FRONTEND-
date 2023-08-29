@@ -1,13 +1,30 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <svg width="46" height="46" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2Zm2.4-3.6a2.4 2.4 0 1 1-4.801 0 2.4 2.4 0 0 1 4.8 0Zm4.8 9.6c0 1.2-1.2 1.2-1.2 1.2H6s-1.2 0-1.2-1.2S6 13.2 12 13.2s7.2 3.6 7.2 4.8Zm-1.2-.005c-.001-.295-.185-1.183-.999-1.997C16.22 15.216 14.747 14.4 12 14.4c-2.748 0-4.22.816-5.002 1.598-.813.814-.996 1.702-.998 1.997h12Z"></path>
+        </svg> <p class="nav-link">{{ user.username }}</p>
+        <ul class="navbar-nav ms-auto">
+        
+          <li class="nav-item">
+            <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 <section class="vh-100 gradient-custom">
-
 
   <div class="container py-5 h-100">
 
-    <div class="text-right"><button class="btn btn-outline-dark " (click)="logout()">Logout</button></div>
+    
     <div class="row d-flex justify-content-center align-items-center h-100">
 
       <div class="col col-xl-10">
@@ -20,8 +37,8 @@
                 <input [(ngModel)]="title" name="title" type="text" id="form2" class="form-control" />
                 <label class="form-label" for="form2">New task...</label>
               </div>
-              <button type="submit" class="btn btn-info ms-4 " style="background-color:#FBE4D8 ;border-radius: 3px;margin-top:-26px; border-color: azure;"
-                 (click)="addList()">Add</button>
+              <button type="submit" class="btn btn-info ms-4 " 
+                 (click)="addList()">Add Task</button>
             </form>
 
             <!-- Tabs navs -->
@@ -47,10 +64,8 @@
                   </ng-container>
                   <ng-template #editRow>
                     <input [(ngModel)]="list.title" (blur)="updateList(list)" name="title" class="form-control me-2" />
-                    <button class="btn ms-2" (click)="updateList(list.id)"><span>&#10003;</span></button>
-                    <button class="btn" (click)="cancelEdit()"><span>&#10005;</span></button>
-
-                  </ng-template>
+                    <!-- <button class="btn ms-2" (click)="updateList(list.id)"><span>&#10003;</span></button> -->
+                  </ng-template> 
                 </li>
               </ul>
 
