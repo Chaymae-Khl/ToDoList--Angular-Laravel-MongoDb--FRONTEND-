@@ -18,14 +18,14 @@ export class SignInSignUpComponent {
 
   onSubmit(form:NgForm){
 
-    const username = form.value.username;
+    const email = form.value.email;
     const password = form.value.password;
-    this.http.post('http://localhost:8089/authentication/login',{
-        username: username,
-        password:password,
+    this.http.post('http://127.0.0.1:8000/api/login',{
+      email: email,
+       password:password,
        
     }).subscribe((res:any)=>{
-     localStorage.setItem('sessionId',res.sessionId);
+     localStorage.setItem('token',res.token);
      this.router.navigate(['/list-page']);
     }, 
     err=>{

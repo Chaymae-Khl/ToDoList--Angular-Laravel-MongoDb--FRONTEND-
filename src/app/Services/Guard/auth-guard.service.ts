@@ -9,13 +9,13 @@ export class AuthGuardService {
 
   constructor(private router: Router) { }
 
-  sessionId:any=localStorage.getItem('sessionId');
+  token:any=localStorage.getItem('token');
   httpOptions = {headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'Authorization': `Bearer ${this.sessionId}` })};
+    'Authorization': `Bearer ${this.token}` })};
 
   canActivate() {
-    if (this.sessionId) {
+    if (this.token) {
       return true;
     } else {
       this.router.navigate(['/signIn-signUp']);

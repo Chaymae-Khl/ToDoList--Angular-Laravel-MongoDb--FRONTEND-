@@ -25,6 +25,7 @@ export class ListComponenentComponent {
     // console.log('liste');
     this.listDataService.getData().subscribe((res:any) =>{
       // console.log(res);
+      console.log(res);
       this.lists= res;
     })
   }
@@ -83,10 +84,10 @@ export class ListComponenentComponent {
 
   
   updateList(list: any) {
-    if (list.id) {
+    if (list._id) {
       // Update existing list
       console.log(list);
-      this.listDataService.UpdateData(list.id,list)
+      this.listDataService.UpdateData(list._id,list)
         .subscribe((response) => {
           // Update the local list with the updated data from the response if needed
           this.selectedList = null; // Clear the selected item after updating

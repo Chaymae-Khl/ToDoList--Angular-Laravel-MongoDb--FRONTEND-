@@ -18,7 +18,7 @@
       <div class="form-inner">
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login">
           <div class="field">
-            <input type="text" placeholder="Username" name="username" ngModel required>
+            <input type="text" placeholder="Email" name="email" ngModel required>
           </div>
           <div class="field">
             <input type="password" placeholder="Password" name="password" ngModel required>
@@ -31,7 +31,7 @@
         </form>
         <form action="#" (ngSubmit)="signupUser()" class="signup">
           <div class="field">
-            <input type="text" placeholder="Username" [(ngModel)]="user.username" name="username" required>
+            <input type="text" placeholder="Email" [(ngModel)]="user.email" name="email" required>
           </div>
           <div class="field">
             <input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required>

@@ -9,37 +9,32 @@ import { List } from 'src/app/Entities/list';
 export class ListDataService {
   http: any;
 
-  private getHttpOptions() {
-    const sessionId = localStorage.getItem('sessionId');
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'sessionId': `${sessionId}`
-      })
-    };
-  }
+  
 
-
+  token:any=localStorage.getItem('token');
+  httpOptions = {headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': `Bearer ${this.token}` })};
   constructor(private httpClient:HttpClient) { }
-  httpOptions = this.getHttpOptions();
+ 
 
 
   authUser(){
-    return this.httpClient.get('http://localhost:8089/authentication/authenticatedUser',this.httpOptions);
+    return this.httpClient.get('http://127.0.0.1:8000/api/user',this.httpOptions);
   }
   getData(){
-    return this.httpClient.get('http://localhost:8089/Api/userLists',this.httpOptions);
+    return this.httpClient.get('http://127.0.0.1:8000/api/tasks',this.httpOptions);
   }
 
   addData(data:any){
     console.log(data);
-    return this.httpClient.post('http://localhost:8089/Api/save',data,this.httpOptions);
+    return this.httpClient.post('http://127.0.0.1:8000/api/tasks',data,this.httpOptions);
   }
   deleteData(id:any){
-    return this.httpClient.delete('http://localhost:8089/Api/delete/'+id,this.httpOptions);
+    return this.httpClient.delete('http://127.0.0.1:8000/api/tasks/'+id,this.httpOptions);
   }
   UpdateData(id:any,data:List){
-    return this.httpClient.post('http://localhost:8089/Api/update/'+id,data,this.httpOptions);
+    return this.httpClient.put('http://127.0.0.1:8000/api/tasks/'+id,data,this.httpOptions);
   }
  
 }

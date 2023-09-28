@@ -9,11 +9,11 @@ export class AuthService {
   constructor(private httpClient:HttpClient) { }
   
   login(data:User){
-    return this.httpClient.post('http://localhost:8089/authentication/login',data);
+    return this.httpClient.post('http://127.0.0.1:8000/api/login',data);
   }
  
   signUp(data:User){
-    return this.httpClient.post('http://localhost:8089/authentication/signup',data);
+    return this.httpClient.post('http://127.0.0.1:8000/api/register',data);
   }
 
 }
