@@ -9,11 +9,11 @@ export class AuthService {
   constructor(private httpClient:HttpClient) { }
   
   login(data:User){
-    return this.httpClient.post('http://127.0.0.1:8000/api/login',data);
+    return this.httpClient.post('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/login',data);
   }
  
   signUp(data:User){
-    return this.httpClient.post('http://127.0.0.1:8000/api/register',data);
+    return this.httpClient.post('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/register',data);
   }
 
 }

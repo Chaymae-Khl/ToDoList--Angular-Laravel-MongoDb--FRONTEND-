@@ -23,6 +23,7 @@
           <div class="field">
             <input type="password" placeholder="Password" name="password" ngModel required>
           </div>
+          
           <div class="pass-link"><a href="#">Forgot password?</a></div>
           <div class="field btn">
             <div class="btn-layer"></div>
@@ -30,6 +31,9 @@
           </div>
         </form>
         <form action="#" (ngSubmit)="signupUser()" class="signup">
+          <div class="field">
+            <input type="text" placeholder="name" [(ngModel)]="user.name" name="name" required>
+          </div>
           <div class="field">
             <input type="text" placeholder="Email" [(ngModel)]="user.email" name="email" required>
           </div>

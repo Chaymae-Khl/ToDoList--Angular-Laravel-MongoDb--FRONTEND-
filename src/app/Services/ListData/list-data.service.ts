@@ -20,21 +20,21 @@ export class ListDataService {
 
 
   authUser(){
-    return this.httpClient.get('http://127.0.0.1:8000/api/user',this.httpOptions);
+    return this.httpClient.get('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/user',this.httpOptions);
   }
   getData(){
-    return this.httpClient.get('http://127.0.0.1:8000/api/tasks',this.httpOptions);
+    return this.httpClient.get('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/tasks',this.httpOptions);
   }
 
   addData(data:any){
     console.log(data);
-    return this.httpClient.post('http://127.0.0.1:8000/api/tasks',data,this.httpOptions);
+    return this.httpClient.post('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/tasks',data,this.httpOptions);
   }
   deleteData(id:any){
-    return this.httpClient.delete('http://127.0.0.1:8000/api/tasks/'+id,this.httpOptions);
+    return this.httpClient.delete('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/tasks/'+id,this.httpOptions);
   }
   UpdateData(id:any,data:List){
-    return this.httpClient.put('http://127.0.0.1:8000/api/tasks/'+id,data,this.httpOptions);
+    return this.httpClient.put('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/tasks/'+id,data,this.httpOptions);
   }
  
 }

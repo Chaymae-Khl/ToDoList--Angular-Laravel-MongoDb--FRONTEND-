@@ -20,7 +20,7 @@ export class SignInSignUpComponent {
 
     const email = form.value.email;
     const password = form.value.password;
-    this.http.post('http://127.0.0.1:8000/api/login',{
+    this.http.post('http://mytodobacklara.eu-north-1.elasticbeanstalk.com/api/login',{
       email: email,
        password:password,
        
